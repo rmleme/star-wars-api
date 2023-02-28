@@ -1,6 +1,6 @@
 package org.rmleme.starwarsapi.usecases.adapter
 
-import org.rmleme.starwarsapi.entities.planet.Planet
+import org.rmleme.starwarsapi.entities.Planet
 
 interface PlanetRepository {
 

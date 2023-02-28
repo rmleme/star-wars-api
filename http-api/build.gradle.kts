@@ -8,5 +8,7 @@ dependencies {
     implementation(Dependency.ktorPluginClientContentNegotiation)
     implementation(Dependency.ktorPluginServerContentNegotiation)
 
+    testImplementation(project(":entities", "test"))
+
     testImplementation(Dependency.ktorTests)
 }

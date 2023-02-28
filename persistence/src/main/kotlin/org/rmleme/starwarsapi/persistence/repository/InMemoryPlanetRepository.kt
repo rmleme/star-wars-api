@@ -1,7 +1,7 @@
 package org.rmleme.starwarsapi.persistence.repository
 
-import org.rmleme.starwarsapi.entities.planet.Film
-import org.rmleme.starwarsapi.entities.planet.Planet
+import org.rmleme.starwarsapi.entities.Film
+import org.rmleme.starwarsapi.entities.Planet
 import org.rmleme.starwarsapi.usecases.adapter.PlanetRepository
 import org.springframework.stereotype.Repository
 

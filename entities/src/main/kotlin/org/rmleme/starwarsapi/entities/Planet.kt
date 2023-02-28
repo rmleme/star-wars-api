@@ -1,4 +1,4 @@
-package org.rmleme.starwarsapi.entities.planet
+package org.rmleme.starwarsapi.entities
 
 data class Planet(
     val name: String,
