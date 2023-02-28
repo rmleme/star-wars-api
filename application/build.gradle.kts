@@ -16,4 +16,5 @@ application {
 
 dependencies{
     implementation(project(":http-api"))
+    implementation(project(":persistence"))
 }
