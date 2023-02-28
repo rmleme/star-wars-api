@@ -33,6 +33,7 @@ object Dependency {
     const val ktorCore = "io.ktor:ktor-server-core-jvm:${Versions.ktor}"
     const val ktorJackson = "io.ktor:ktor-serialization-jackson-jvm:${Versions.ktor}"
     const val ktorNetty = "io.ktor:ktor-server-netty-jvm:${Versions.ktor}"
+    const val ktorPluginClientContentNegotiation = "io.ktor:ktor-client-content-negotiation-jvm:${Versions.ktor}"
     const val ktorPluginServerContentNegotiation = "io.ktor:ktor-server-content-negotiation-jvm:${Versions.ktor}"
 
     // Tests
