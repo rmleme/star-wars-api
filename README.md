@@ -10,3 +10,4 @@
 - [Kotlin 1.8](https://kotlinlang.org/docs/whatsnew18.html)
 - [Ktor/Netty 2.2](https://ktor.io/)
 - [Logback 1.4](https://logback.qos.ch/)
+- [Spring Framemork 6.0](https://spring.io/projects/spring-framework)
