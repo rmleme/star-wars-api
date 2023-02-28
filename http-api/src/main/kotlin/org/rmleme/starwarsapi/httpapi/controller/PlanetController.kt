@@ -4,15 +4,10 @@ import io.ktor.server.application.call
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
-import org.rmleme.starwarsapi.httpapi.dto.response.PlanetResponse
+import org.rmleme.starwarsapi.usecases.service.PlanetService
 
-fun Route.getPlanets() {
+fun Route.getPlanets(service: PlanetService) {
     get {
-        call.respond(
-            listOf(
-                PlanetResponse(name = "Coruscant", climate = "temperate", terrain = "cityscape, mountains"),
-                PlanetResponse(name = "Hoth", climate = "frozen", terrain = "tundra, ice caves, mountain ranges"),
-            )
-        )
+        call.respond(service.findAll())
     }
 }
