@@ -1,4 +1,4 @@
-package org.rmleme.starwarsapi.httpapi
+package org.rmleme.starwarsapi.httpapi.controller
 
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.ShouldSpec
@@ -11,7 +11,6 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import org.rmleme.starwarsapi.entities.planet.Planet
-import org.rmleme.starwarsapi.httpapi.controller.getPlanets
 import org.rmleme.starwarsapi.httpapi.extension.asJson
 import org.rmleme.starwarsapi.httpapi.extension.defaultTestApplication
 import org.rmleme.starwarsapi.usecases.service.PlanetService
