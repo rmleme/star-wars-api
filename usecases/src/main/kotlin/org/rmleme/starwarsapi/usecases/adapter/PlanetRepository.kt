@@ -8,4 +8,6 @@ interface PlanetRepository {
     suspend fun findAll(): List<Planet>
 
     suspend fun findById(id: Int): Optional<Planet>
+
+    suspend fun findByName(name: String): Optional<Planet>
 }

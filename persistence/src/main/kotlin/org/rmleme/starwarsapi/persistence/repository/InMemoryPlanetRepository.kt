@@ -35,4 +35,6 @@ class InMemoryPlanetRepository : PlanetRepository {
     override suspend fun findAll() = registry.values.toList()
 
     override suspend fun findById(id: Int) = Optional.ofNullable(registry[id])
+
+    override suspend fun findByName(name: String) = Optional.ofNullable(registry.values.firstOrNull { it.name == name })
 }

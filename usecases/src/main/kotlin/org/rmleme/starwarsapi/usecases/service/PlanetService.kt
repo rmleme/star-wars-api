@@ -9,4 +9,6 @@ class PlanetService(val repository: PlanetRepository) {
     suspend fun findAll() = repository.findAll()
 
     suspend fun findById(id: Int) = repository.findById(id)
+
+    suspend fun findByName(name: String) = repository.findByName(name)
 }

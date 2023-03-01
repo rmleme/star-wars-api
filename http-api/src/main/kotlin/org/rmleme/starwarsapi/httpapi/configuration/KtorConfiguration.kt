@@ -10,6 +10,7 @@ import io.ktor.server.engine.loadCommonConfiguration
 import io.ktor.server.engine.stop
 import io.ktor.server.netty.NettyApplicationEngine
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.server.routing.IgnoreTrailingSlash
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import java.util.concurrent.TimeUnit
@@ -35,6 +36,7 @@ class KtorConfiguration {
     @Bean
     fun application(engine: ApplicationEngine) = engine.application.apply {
         install(ContentNegotiation) { jackson {} }
+        install(IgnoreTrailingSlash)
     }
 
     private fun NettyApplicationEngine.Configuration.loadConfiguration(config: ApplicationConfig) {

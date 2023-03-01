@@ -27,7 +27,7 @@ class PlanetServiceTest : ShouldSpec({
         coVerify(exactly = 1) { planetRepository.findAll() }
     }
 
-    should("delegate find a planet to repository") {
+    should("delegate find a planet by id to repository") {
         val planet = CORUSCANT
 
         coEvery { planetRepository.findById(9) } returns Optional.of(planet)
@@ -37,5 +37,17 @@ class PlanetServiceTest : ShouldSpec({
         result.get() shouldBe planet
 
         coVerify(exactly = 1) { planetRepository.findById(9) }
+    }
+
+    should("delegate find a planet by name to repository") {
+        val planet = CORUSCANT
+
+        coEvery { planetRepository.findByName("Coruscant") } returns Optional.of(planet)
+
+        val result = service.findByName("Coruscant")
+
+        result.get() shouldBe planet
+
+        coVerify(exactly = 1) { planetRepository.findByName("Coruscant") }
     }
 })

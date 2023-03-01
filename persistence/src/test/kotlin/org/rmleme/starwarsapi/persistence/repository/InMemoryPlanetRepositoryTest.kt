@@ -21,7 +21,7 @@ class InMemoryPlanetRepositoryTest : ShouldSpec({
         result.all { it in planets } shouldBe true
     }
 
-    should("find a planet") {
+    should("find a planet by id") {
         val planet = CORUSCANT
 
         val result = repository.findById(9)
@@ -30,8 +30,23 @@ class InMemoryPlanetRepositoryTest : ShouldSpec({
         result.get() shouldBe planet
     }
 
-    should("find no planets") {
+    should("find no planets by id") {
         val result = repository.findById(-1)
+
+        result.isEmpty shouldBe true
+    }
+
+    should("find a planet by name") {
+        val planet = CORUSCANT
+
+        val result = repository.findByName("Coruscant")
+
+        result.isPresent shouldBe true
+        result.get() shouldBe planet
+    }
+
+    should("find no planets by name") {
+        val result = repository.findByName("")
 
         result.isEmpty shouldBe true
     }
