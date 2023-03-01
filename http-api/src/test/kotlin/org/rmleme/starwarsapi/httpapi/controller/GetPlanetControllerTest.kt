@@ -7,6 +7,7 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.testing.testApplication
+import io.mockk.Called
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -22,6 +23,18 @@ class GetPlanetControllerTest : ShouldSpec({
     isolationMode = IsolationMode.InstancePerTest
 
     val service = mockk<PlanetService>()
+
+    should("return HTTP 400 when id is non-numeric") {
+        testApplication {
+            val client = defaultTestApplication(PLANETS_PATH) { getPlanet(service) }
+
+            client.get("$PLANETS_PATH/abc").apply {
+                status shouldBe HttpStatusCode.BadRequest
+            }
+
+            coVerify { service wasNot Called }
+        }
+    }
 
     should("return a planet with HTTP 200") {
         testApplication {

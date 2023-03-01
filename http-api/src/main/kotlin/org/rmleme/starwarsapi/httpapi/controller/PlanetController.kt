@@ -15,11 +15,16 @@ fun Route.getPlanets(service: PlanetService) {
 
 fun Route.getPlanet(service: PlanetService) {
     get("/{id}") {
-        val planet = call.parameters["id"]?.let { service.findById(it.toInt()) }
-        if (planet?.isPresent == true) {
-            call.respond(planet.get())
+        val id = call.parameters["id"]?.toIntOrNull()
+        if (id == null) {
+            call.respond(HttpStatusCode.BadRequest, "Invalid id: ${call.parameters["id"]}. Must be numeric.")
         } else {
-            call.respond(HttpStatusCode.NotFound)
+            val planet = service.findById(id)
+            if (planet.isPresent) {
+                call.respond(planet.get())
+            } else {
+                call.respond(HttpStatusCode.NotFound)
+            }
         }
     }
 }
