@@ -34,7 +34,7 @@ class DeletePlanetControllerTest : ShouldSpec({
         }
     }
 
-    should("return HTTP 204") {
+    should("return HTTP 204 when planet was deleted") {
         testApplication {
             val client = defaultTestApplication(PLANETS_PATH) { deletePlanet(service) }
 
@@ -50,7 +50,7 @@ class DeletePlanetControllerTest : ShouldSpec({
         }
     }
 
-    should("return HTTP 404") {
+    should("return HTTP 404 when planet was not found") {
         testApplication {
             val client = defaultTestApplication(PLANETS_PATH) { deletePlanet(service) }
 
