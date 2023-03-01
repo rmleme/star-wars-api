@@ -1,17 +1,16 @@
 package org.rmleme.starwarsapi.usecases.service
 
-import org.rmleme.starwarsapi.entities.Planet
+import org.rmleme.starwarsapi.usecases.adapter.PlanetApiClient
 import org.rmleme.starwarsapi.usecases.adapter.PlanetRepository
 import org.springframework.stereotype.Service
-import java.util.Optional
 
 @Service
-class PlanetService(val repository: PlanetRepository) {
+class PlanetService(
+    val apiClient: PlanetApiClient,
+    val repository: PlanetRepository
+) {
 
-    @Suppress("UnusedPrivateMember")
-    suspend fun loadPlanetFromSWApi(id: Int): Optional<Planet> {
-        TODO()
-    }
+    suspend fun loadPlanetFromApi(id: Int) = apiClient.loadPlanetFromApi(id)
 
     suspend fun findAll() = repository.findAll()
 

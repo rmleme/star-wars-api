@@ -15,7 +15,7 @@ import org.rmleme.starwarsapi.usecases.service.PlanetService
 fun Route.postPlanet(service: PlanetService) {
     post {
         val planetRequest = call.receive<PlanetRequest>()
-        val planet = service.loadPlanetFromSWApi(planetRequest.id)
+        val planet = service.loadPlanetFromApi(planetRequest.id)
         if (planet.isPresent) {
             call.respond(HttpStatusCode.Created, planet.get())
         } else {

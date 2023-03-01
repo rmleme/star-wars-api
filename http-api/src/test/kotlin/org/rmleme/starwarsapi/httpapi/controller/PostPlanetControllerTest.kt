@@ -57,7 +57,7 @@ class PostPlanetControllerTest : ShouldSpec({
             val planet = CORUSCANT
             val expected = ClassPathResource("/single-planet-response.json").file.readText()
 
-            coEvery { service.loadPlanetFromSWApi(9) } returns Optional.of(planet)
+            coEvery { service.loadPlanetFromApi(9) } returns Optional.of(planet)
 
             client.post(PLANETS_PATH) {
                 contentType(ContentType.Application.Json)
@@ -67,7 +67,7 @@ class PostPlanetControllerTest : ShouldSpec({
                 bodyAsText().asJson() shouldBe expected.asJson()
             }
 
-            coVerify(exactly = 1) { service.loadPlanetFromSWApi(9) }
+            coVerify(exactly = 1) { service.loadPlanetFromApi(9) }
         }
     }
 
@@ -75,7 +75,7 @@ class PostPlanetControllerTest : ShouldSpec({
         testApplication {
             val client = defaultTestApplication(PLANETS_PATH) { postPlanet(service) }
 
-            coEvery { service.loadPlanetFromSWApi(9) } returns Optional.empty()
+            coEvery { service.loadPlanetFromApi(9) } returns Optional.empty()
 
             client.post(PLANETS_PATH) {
                 contentType(ContentType.Application.Json)
@@ -84,7 +84,7 @@ class PostPlanetControllerTest : ShouldSpec({
                 status shouldBe HttpStatusCode.UnprocessableEntity
             }
 
-            coVerify(exactly = 1) { service.loadPlanetFromSWApi(9) }
+            coVerify(exactly = 1) { service.loadPlanetFromApi(9) }
         }
     }
 })
