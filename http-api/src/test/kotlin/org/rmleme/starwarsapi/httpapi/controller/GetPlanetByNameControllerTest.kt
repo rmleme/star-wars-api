@@ -28,7 +28,7 @@ class GetPlanetByNameControllerTest : ShouldSpec({
             val client = defaultTestApplication(PLANETS_PATH) { getPlanets(service) }
 
             val planet = CORUSCANT
-            val expected = ClassPathResource("/get-planet-response.json").file.readText()
+            val expected = ClassPathResource("/single-planet-response.json").file.readText()
 
             coEvery { service.findByName("Coruscant") } returns Optional.of(planet)
 

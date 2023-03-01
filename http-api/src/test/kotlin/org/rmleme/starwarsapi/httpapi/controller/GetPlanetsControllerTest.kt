@@ -27,7 +27,7 @@ class GetPlanetsControllerTest : ShouldSpec({
             val client = defaultTestApplication(PLANETS_PATH) { getPlanets(service) }
 
             val planets = buildPlanets()
-            val expected = ClassPathResource("/get-planets-response.json").file.readText()
+            val expected = ClassPathResource("/multiple-planets-response.json").file.readText()
 
             coEvery { service.findAll() } returns planets
 

@@ -3,11 +3,26 @@ package org.rmleme.starwarsapi.httpapi.controller
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.application.call
+import io.ktor.server.request.receive
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.delete
 import io.ktor.server.routing.get
+import io.ktor.server.routing.post
+import org.rmleme.starwarsapi.httpapi.dto.request.PlanetRequest
 import org.rmleme.starwarsapi.usecases.service.PlanetService
+
+fun Route.postPlanet(service: PlanetService) {
+    post {
+        val planetRequest = call.receive<PlanetRequest>()
+        val planet = service.loadPlanetFromSWApi(planetRequest.id)
+        if (planet.isPresent) {
+            call.respond(HttpStatusCode.Created, planet.get())
+        } else {
+            call.respond(HttpStatusCode.UnprocessableEntity)
+        }
+    }
+}
 
 fun Route.getPlanets(service: PlanetService) {
     get {

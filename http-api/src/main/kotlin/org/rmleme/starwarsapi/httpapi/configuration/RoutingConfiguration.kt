@@ -6,6 +6,7 @@ import io.ktor.server.routing.routing
 import org.rmleme.starwarsapi.httpapi.controller.deletePlanet
 import org.rmleme.starwarsapi.httpapi.controller.getPlanet
 import org.rmleme.starwarsapi.httpapi.controller.getPlanets
+import org.rmleme.starwarsapi.httpapi.controller.postPlanet
 import org.rmleme.starwarsapi.usecases.service.PlanetService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -21,6 +22,7 @@ class RoutingConfiguration {
         routing {
             route(VERSION_ROUTE) {
                 route(PLANETS_ROUTE) {
+                    postPlanet(planetService)
                     getPlanets(planetService)
                     getPlanet(planetService)
                     deletePlanet(planetService)

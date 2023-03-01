@@ -35,6 +35,8 @@ object Dependency {
     const val ktorNetty = "io.ktor:ktor-server-netty-jvm:${Versions.ktor}"
     const val ktorPluginClientContentNegotiation = "io.ktor:ktor-client-content-negotiation-jvm:${Versions.ktor}"
     const val ktorPluginServerContentNegotiation = "io.ktor:ktor-server-content-negotiation-jvm:${Versions.ktor}"
+    const val ktorPluginServerRequestValidation = "io.ktor:ktor-server-request-validation-jvm:${Versions.ktor}"
+    const val ktorPluginServerStatusPages = "io.ktor:ktor-server-status-pages-jvm:${Versions.ktor}"
 
     // Tests
     const val kotestCore = "io.kotest:kotest-assertions-core-jvm:${Versions.kotest}"
