@@ -3,6 +3,7 @@ package org.rmleme.starwarsapi.httpapi.configuration
 import io.ktor.server.application.Application
 import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
+import org.rmleme.starwarsapi.httpapi.controller.deletePlanet
 import org.rmleme.starwarsapi.httpapi.controller.getPlanet
 import org.rmleme.starwarsapi.httpapi.controller.getPlanets
 import org.rmleme.starwarsapi.usecases.service.PlanetService
@@ -22,6 +23,7 @@ class RoutingConfiguration {
                 route(PLANETS_ROUTE) {
                     getPlanets(planetService)
                     getPlanet(planetService)
+                    deletePlanet(planetService)
                 }
             }
         }

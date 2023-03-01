@@ -11,4 +11,6 @@ class PlanetService(val repository: PlanetRepository) {
     suspend fun findById(id: Int) = repository.findById(id)
 
     suspend fun findByName(name: String) = repository.findByName(name)
+
+    suspend fun deleteById(id: Int) = repository.deleteById(id)
 }

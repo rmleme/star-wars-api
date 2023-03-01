@@ -50,4 +50,16 @@ class PlanetServiceTest : ShouldSpec({
 
         coVerify(exactly = 1) { planetRepository.findByName("Coruscant") }
     }
+
+    should("delegate delete a planet to repository") {
+        val planet = CORUSCANT
+
+        coEvery { planetRepository.deleteById(9) } returns Optional.of(planet)
+
+        val result = service.deleteById(9)
+
+        result.get() shouldBe planet
+
+        coVerify(exactly = 1) { planetRepository.deleteById(9) }
+    }
 })

@@ -10,4 +10,6 @@ interface PlanetRepository {
     suspend fun findById(id: Int): Optional<Planet>
 
     suspend fun findByName(name: String): Optional<Planet>
+
+    suspend fun deleteById(id: Int): Optional<Planet>
 }

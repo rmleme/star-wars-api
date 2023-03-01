@@ -50,4 +50,19 @@ class InMemoryPlanetRepositoryTest : ShouldSpec({
 
         result.isEmpty shouldBe true
     }
+
+    should("delete an existent planet") {
+        val planet = CORUSCANT
+
+        val result = repository.deleteById(9)
+
+        result.isPresent shouldBe true
+        result.get() shouldBe planet
+    }
+
+    should("return an empty Optional when delete a non-existent planet") {
+        val result = repository.deleteById(-1)
+
+        result.isEmpty shouldBe true
+    }
 })

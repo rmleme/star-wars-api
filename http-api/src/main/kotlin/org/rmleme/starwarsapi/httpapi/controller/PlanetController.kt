@@ -5,6 +5,7 @@ import io.ktor.server.application.ApplicationCall
 import io.ktor.server.application.call
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
+import io.ktor.server.routing.delete
 import io.ktor.server.routing.get
 import org.rmleme.starwarsapi.usecases.service.PlanetService
 
@@ -37,6 +38,22 @@ fun Route.getPlanet(service: PlanetService) {
             val planet = service.findById(id)
             if (planet.isPresent) {
                 call.respond(planet.get())
+            } else {
+                call.respond(HttpStatusCode.NotFound)
+            }
+        }
+    }
+}
+
+fun Route.deletePlanet(service: PlanetService) {
+    delete("/{id}") {
+        val id = call.parameters["id"]?.toIntOrNull()
+        if (id == null) {
+            call.respond(HttpStatusCode.BadRequest, "Invalid id: ${call.parameters["id"]}. Must be numeric.")
+        } else {
+            val planet = service.deleteById(id)
+            if (planet.isPresent) {
+                call.respond(HttpStatusCode.NoContent)
             } else {
                 call.respond(HttpStatusCode.NotFound)
             }
