@@ -4,6 +4,7 @@ import org.rmleme.starwarsapi.entities.Film
 import org.rmleme.starwarsapi.entities.Planet
 import org.rmleme.starwarsapi.usecases.adapter.PlanetRepository
 import org.springframework.stereotype.Repository
+import java.util.Optional
 
 @Suppress("MagicNumber")
 @Repository
@@ -32,4 +33,6 @@ class InMemoryPlanetRepository : PlanetRepository {
     )
 
     override suspend fun findAll() = registry.values.toList()
+
+    override suspend fun findById(id: Int) = Optional.ofNullable(registry[id])
 }

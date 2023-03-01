@@ -5,8 +5,10 @@ import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import org.rmleme.starwarsapi.entities.CORUSCANT
 import org.rmleme.starwarsapi.entities.buildPlanets
 import org.rmleme.starwarsapi.usecases.adapter.PlanetRepository
+import java.util.Optional
 
 class PlanetServiceTest : ShouldSpec({
 
@@ -23,5 +25,17 @@ class PlanetServiceTest : ShouldSpec({
         result shouldBe planets
 
         coVerify(exactly = 1) { planetRepository.findAll() }
+    }
+
+    should("delegate find a planet to repository") {
+        val planet = CORUSCANT
+
+        coEvery { planetRepository.findById(9) } returns Optional.of(planet)
+
+        val result = service.findById(9)
+
+        result.get() shouldBe planet
+
+        coVerify(exactly = 1) { planetRepository.findById(9) }
     }
 })

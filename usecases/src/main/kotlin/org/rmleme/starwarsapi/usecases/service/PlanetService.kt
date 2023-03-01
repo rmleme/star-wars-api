@@ -7,4 +7,6 @@ import org.springframework.stereotype.Service
 class PlanetService(val repository: PlanetRepository) {
 
     suspend fun findAll() = repository.findAll()
+
+    suspend fun findById(id: Int) = repository.findById(id)
 }
