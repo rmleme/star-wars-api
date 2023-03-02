@@ -42,9 +42,9 @@ class SWApiClientImplTest : ShouldSpec({
     should("return Optional.empty when invoke a non-existent planet id from swapi") {
         val expected = Optional.empty<PlanetResponse>()
 
-        coEvery { httpClient.get("$SWAPI_URL/planets/9/?format=json") } throws IOException()
+        coEvery { httpClient.get("$SWAPI_URL/planets/999/?format=json") } throws IOException()
 
-        val result = apiClient.loadPlanetFromApi(9)
+        val result = apiClient.loadPlanetFromApi(999)
 
         result shouldBe expected
 
