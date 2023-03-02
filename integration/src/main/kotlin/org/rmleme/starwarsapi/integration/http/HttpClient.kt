@@ -18,7 +18,7 @@ class HttpClient {
             },
             failure = {
                 throw IOException(
-                    "Error calling ${request.method.value} $request (status code = ${response.statusCode})",
+                    "Error calling ${request.method} ${request.url} (status code = ${response.statusCode})",
                     it.exception
                 )
             }
