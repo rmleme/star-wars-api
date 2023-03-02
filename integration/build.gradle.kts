@@ -6,4 +6,6 @@ dependencies {
     implementation(Dependency.fuelCoroutines)
     implementation(Dependency.jackson)
     implementation(Dependency.kotlinCoroutinesCore)
+
+    testImplementation(project(":entities", "test"))
 }

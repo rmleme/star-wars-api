@@ -2,7 +2,6 @@ package org.rmleme.starwarsapi.integration.api.client.dto.response
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
-import org.rmleme.starwarsapi.integration.api.client.dto.response.PlanetResponse
 
 class PlanetResponseTest : ShouldSpec({
 
