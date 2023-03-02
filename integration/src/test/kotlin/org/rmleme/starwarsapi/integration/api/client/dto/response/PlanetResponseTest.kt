@@ -1,4 +1,4 @@
-package org.rmleme.starwarsapi.integration.dto.response
+package org.rmleme.starwarsapi.integration.api.client.dto.response
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
