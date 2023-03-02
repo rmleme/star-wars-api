@@ -15,7 +15,7 @@ class SWApiClientImplTest : ShouldSpec({
     val httpClient = mockk<HttpClient>()
     val apiClient = SWApiClientImpl(httpClient, SWAPI_URL, ApiClientConfiguration().jackson())
 
-    should("get a planet from swapi") {
+    should("return a planet when invoke an existent planet id from swapi") {
         val expected = CORUSCANT
 
         coEvery { httpClient.get("$SWAPI_URL/planets/9/?format=json") } returns ClassPathResource(
