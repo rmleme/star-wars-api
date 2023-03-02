@@ -1,5 +1,6 @@
 package org.rmleme.starwarsapi.integration.api.client
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
@@ -9,6 +10,7 @@ import io.mockk.mockk
 import org.rmleme.starwarsapi.entities.CORUSCANT
 import org.rmleme.starwarsapi.integration.api.client.dto.response.PlanetResponse
 import org.rmleme.starwarsapi.integration.api.configuration.ApiClientConfiguration
+import org.rmleme.starwarsapi.integration.exception.HttpNotFoundException
 import org.rmleme.starwarsapi.integration.http.HttpClient
 import org.springframework.core.io.ClassPathResource
 import java.io.IOException
@@ -42,11 +44,19 @@ class SWApiClientImplTest : ShouldSpec({
     should("return Optional.empty when invoke a non-existent planet id from swapi") {
         val expected = Optional.empty<PlanetResponse>()
 
-        coEvery { httpClient.get("$SWAPI_URL/planets/999/?format=json") } throws IOException()
+        coEvery { httpClient.get("$SWAPI_URL/planets/999/?format=json") } throws HttpNotFoundException()
 
         val result = apiClient.loadPlanetFromApi(999)
 
         result shouldBe expected
+
+        coVerify(exactly = 1) { httpClient.get(any()) }
+    }
+
+    should("rethrow an exception originated from HttpClient") {
+        coEvery { httpClient.get("$SWAPI_URL/planets/9/?format=json") } throws IOException()
+
+        shouldThrow<IOException> { apiClient.loadPlanetFromApi(9) }
 
         coVerify(exactly = 1) { httpClient.get(any()) }
     }
