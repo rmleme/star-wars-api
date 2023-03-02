@@ -16,7 +16,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import io.mockk.verify
 import org.rmleme.starwarsapi.entities.CORUSCANT
-import org.rmleme.starwarsapi.httpapi.dto.request.PlanetRequest
+import org.rmleme.starwarsapi.httpapi.controller.dto.request.PlanetRequest
 import org.rmleme.starwarsapi.httpapi.extension.asJson
 import org.rmleme.starwarsapi.httpapi.extension.defaultTestApplication
 import org.rmleme.starwarsapi.usecases.service.PlanetService

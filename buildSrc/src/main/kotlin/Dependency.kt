@@ -4,14 +4,19 @@ object Dependency {
 
         // Kotlin
         const val kotlin = "1.8.0"
+        const val kotlinCoroutine = "1.6.4"
 
         // Logs
         const val logback = "1.4.5"
+
+        // Json
+        const val jackson = "2.14.2"
 
         // Spring
         const val springCommon = "6.0.4"
 
         // Web
+        const val fuel = "2.3.1"
         const val ktor = "2.2.3"
 
         // Tests
@@ -23,13 +28,21 @@ object Dependency {
         const val detekt = "1.22.0"
     }
 
+    // Kotlin
+    const val kotlinCoroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:${Versions.kotlinCoroutine}"
+
     // Logs
     const val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
+
+    // Json
+    const val jackson = "com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.jackson}"
 
     // Spring
     const val springContext = "org.springframework:spring-context:${Versions.springCommon}"
 
     // Web
+    const val fuel = "com.github.kittinunf.fuel:fuel:${Versions.fuel}"
+    const val fuelCoroutines = "com.github.kittinunf.fuel:fuel-coroutines:${Versions.fuel}"
     const val ktorCore = "io.ktor:ktor-server-core-jvm:${Versions.ktor}"
     const val ktorJackson = "io.ktor:ktor-serialization-jackson-jvm:${Versions.ktor}"
     const val ktorNetty = "io.ktor:ktor-server-netty-jvm:${Versions.ktor}"

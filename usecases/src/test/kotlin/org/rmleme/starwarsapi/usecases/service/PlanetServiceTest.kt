@@ -9,28 +9,28 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import org.rmleme.starwarsapi.entities.CORUSCANT
 import org.rmleme.starwarsapi.entities.buildPlanets
-import org.rmleme.starwarsapi.usecases.adapter.PlanetApiClient
 import org.rmleme.starwarsapi.usecases.adapter.PlanetRepository
+import org.rmleme.starwarsapi.usecases.adapter.SWApiClient
 import java.util.Optional
 
 class PlanetServiceTest : ShouldSpec({
 
     isolationMode = IsolationMode.InstancePerTest
 
-    val planetApiClient = mockk<PlanetApiClient>()
+    val swapiClient = mockk<SWApiClient>()
     val planetRepository = mockk<PlanetRepository>()
-    val service = PlanetService(planetApiClient, planetRepository)
+    val service = PlanetService(swapiClient, planetRepository)
 
-    should("delegate load a planet to API client") {
+    should("delegate load a planet to swapi client") {
         val planet = CORUSCANT
 
-        coEvery { planetApiClient.loadPlanetFromApi(9) } returns Optional.of(planet)
+        coEvery { swapiClient.loadPlanetFromApi(9) } returns Optional.of(planet)
 
         val result = service.loadPlanetFromApi(9)
 
         result.get() shouldBe planet
 
-        coVerify(exactly = 1) { planetApiClient.loadPlanetFromApi(9) }
+        coVerify(exactly = 1) { swapiClient.loadPlanetFromApi(9) }
         coVerify { planetRepository wasNot Called }
     }
 
@@ -43,7 +43,7 @@ class PlanetServiceTest : ShouldSpec({
 
         result shouldBe planets
 
-        coVerify { planetApiClient wasNot Called }
+        coVerify { swapiClient wasNot Called }
         coVerify(exactly = 1) { planetRepository.findAll() }
     }
 
@@ -56,7 +56,7 @@ class PlanetServiceTest : ShouldSpec({
 
         result.get() shouldBe planet
 
-        coVerify { planetApiClient wasNot Called }
+        coVerify { swapiClient wasNot Called }
         coVerify(exactly = 1) { planetRepository.findById(9) }
     }
 
@@ -69,7 +69,7 @@ class PlanetServiceTest : ShouldSpec({
 
         result.get() shouldBe planet
 
-        coVerify { planetApiClient wasNot Called }
+        coVerify { swapiClient wasNot Called }
         coVerify(exactly = 1) { planetRepository.findByName("Coruscant") }
     }
 
@@ -82,7 +82,7 @@ class PlanetServiceTest : ShouldSpec({
 
         result.get() shouldBe planet
 
-        coVerify { planetApiClient wasNot Called }
+        coVerify { swapiClient wasNot Called }
         coVerify(exactly = 1) { planetRepository.deleteById(9) }
     }
 })

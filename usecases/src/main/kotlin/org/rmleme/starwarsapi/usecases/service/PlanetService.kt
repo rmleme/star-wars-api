@@ -1,13 +1,13 @@
 package org.rmleme.starwarsapi.usecases.service
 
-import org.rmleme.starwarsapi.usecases.adapter.PlanetApiClient
 import org.rmleme.starwarsapi.usecases.adapter.PlanetRepository
+import org.rmleme.starwarsapi.usecases.adapter.SWApiClient
 import org.springframework.stereotype.Service
 
 @Service
 class PlanetService(
-    val apiClient: PlanetApiClient,
-    val repository: PlanetRepository
+    private val apiClient: SWApiClient,
+    private val repository: PlanetRepository
 ) {
 
     suspend fun loadPlanetFromApi(id: Int) = apiClient.loadPlanetFromApi(id)

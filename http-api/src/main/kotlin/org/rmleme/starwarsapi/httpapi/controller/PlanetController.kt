@@ -9,7 +9,7 @@ import io.ktor.server.routing.Route
 import io.ktor.server.routing.delete
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
-import org.rmleme.starwarsapi.httpapi.dto.request.PlanetRequest
+import org.rmleme.starwarsapi.httpapi.controller.dto.request.PlanetRequest
 import org.rmleme.starwarsapi.usecases.service.PlanetService
 
 fun Route.postPlanet(service: PlanetService) {
@@ -35,7 +35,7 @@ fun Route.getPlanets(service: PlanetService) {
     }
 }
 
-suspend fun getPlanetByName(call: ApplicationCall, service: PlanetService, name: String) {
+private suspend fun getPlanetByName(call: ApplicationCall, service: PlanetService, name: String) {
     val planet = service.findByName(name)
     if (planet.isPresent) {
         call.respond(planet.get())
