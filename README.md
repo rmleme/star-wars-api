@@ -3,6 +3,7 @@
 ## Technologies
 
 - [Detekt 1.22](https://detekt.dev/)
+- [Fuel 2.3](https://fuel.gitbook.io/documentation/)
 - [Gradle 7.6](https://gradle.org/)
 - [Jackson 2.14](https://github.com/FasterXML/jackson)
 - [JDK 17](https://openjdk.org/projects/jdk/17/)
