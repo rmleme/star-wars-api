@@ -13,13 +13,12 @@ import org.springframework.core.io.ClassPathResource
 class SWApiClientImplTest : ShouldSpec({
 
     val httpClient = mockk<HttpClient>()
-    val swapiUrl = "https://swapi.dev/api"
-    val apiClient = SWApiClientImpl(httpClient, swapiUrl, ApiClientConfiguration().jackson())
+    val apiClient = SWApiClientImpl(httpClient, SWAPI_URL, ApiClientConfiguration().jackson())
 
     should("get a planet from swapi") {
         val expected = CORUSCANT
 
-        coEvery { httpClient.get("$swapiUrl/planets/9/?format=json") } returns ClassPathResource(
+        coEvery { httpClient.get("$SWAPI_URL/planets/9/?format=json") } returns ClassPathResource(
             "/swapi-planet-9-response.json"
         ).file.readText()
         coEvery { httpClient.get(filmUrl(3)) } returns ClassPathResource("/swapi-film-3-response.json").file.readText()
@@ -35,4 +34,6 @@ class SWApiClientImplTest : ShouldSpec({
     }
 })
 
-private fun filmUrl(id: Int) = "https://swapi.dev/api/films/$id/?format=json"
+private const val SWAPI_URL = "https://swapi.dev/api"
+
+private fun filmUrl(id: Int) = "$SWAPI_URL/films/$id/?format=json"
