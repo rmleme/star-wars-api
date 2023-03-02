@@ -9,8 +9,10 @@ import org.rmleme.starwarsapi.integration.api.client.dto.response.FilmResponse
 import org.rmleme.starwarsapi.integration.api.client.dto.response.PlanetResponse
 import org.rmleme.starwarsapi.integration.http.HttpClient
 import org.rmleme.starwarsapi.usecases.adapter.SWApiClient
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
+import java.io.IOException
 import java.util.Optional
 
 @Component
@@ -21,7 +23,13 @@ class SWApiClientImpl(
 ) : SWApiClient {
 
     override suspend fun loadPlanetFromApi(id: Int): Optional<Planet> = coroutineScope {
-        val planetJson = httpClient.get("$swapiUrl/planets/$id/?format=json")
+        val planetJson = try {
+            httpClient.get("$swapiUrl/planets/$id/?format=json")
+        } catch (e: IOException) {
+            logger.error("Planet $id not found", e)
+            return@coroutineScope Optional.empty()
+        }
+
         val planetResponse = mapper.readValue(planetJson, PlanetResponse::class.java)
         val filmsResponse = planetResponse.films.map { filmUrl ->
             async {
@@ -29,6 +37,11 @@ class SWApiClientImpl(
                 mapper.readValue(filmJson, FilmResponse::class.java)
             }
         }.awaitAll()
+
         Optional.of(planetResponse.toPlanet(filmsResponse))
+    }
+
+    private companion object {
+        val logger = LoggerFactory.getLogger(SWApiClientImpl::class.java)!!
     }
 }
