@@ -26,7 +26,7 @@ class SWApiClientImpl(
         val planetJson = try {
             httpClient.get("$swapiUrl/planets/$id/?format=json")
         } catch (e: HttpNotFoundException) {
-            logger.error("Planet $id not found", e)
+            logger.warn("Planet $id not found", e)
             return@coroutineScope Optional.empty()
         }
 
@@ -38,6 +38,7 @@ class SWApiClientImpl(
             }
         }.awaitAll()
 
+        logger.info("Planet $id (${planetResponse.name}) retrieved from swapi")
         Optional.of(planetResponse.toPlanet(filmsResponse))
     }
 

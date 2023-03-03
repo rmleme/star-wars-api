@@ -1,5 +1,7 @@
 <configuration>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_BASE_DIR:-/tmp}/star-wars-api/app.log</file>
+        <append>true</append>
         <encoder>
             <pattern>
                 %d{yyyy-MM-dd HH:mm:ss.SSS} [%cyan(%thread)] %highlight(%-5level) %cyan(%logger{36}) %magenta({%mdc{}}) - %msg%n
@@ -8,7 +10,7 @@
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
     </root>
     <logger name="io.netty" level="INFO"/>
 </configuration>
