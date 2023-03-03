@@ -1,0 +1,19 @@
+services:
+  application:
+    profiles: ["application"]
+    build:
+      context: .
+    container_name: star-wars-api.application
+    ports:
+      - "8080:8080"
+    environment:
+      JAVA_OPTS: "-Xms256m -Xmx256m"
+      LOG_BASE_DIR: "/var/log"
+    volumes:
+      - "${HOST_BASE_LOG_DIR:-./log}/star-wars-api:/var/log/star-wars-api"
+  test:
+    profiles: ["test"]
+    build:
+      context: .
+      dockerfile: Dockerfile-tests
+    container_name: star-wars-api.test

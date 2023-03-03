@@ -5,6 +5,8 @@ A Kotlin facade for [SWAPI (The Star Wars API)](https://swapi.dev/).
 ## Technologies
 
 - [Detekt 1.22](https://detekt.dev/)
+- [Docker Compose 2.16](https://docs.docker.com/compose/)
+- [Docker Engine 23.0](https://docs.docker.com/engine/)
 - [Fuel 2.3](https://fuel.gitbook.io/documentation/)
 - [Gradle 7.6](https://gradle.org/)
 - [Jackson 2.14](https://github.com/FasterXML/jackson)
@@ -15,9 +17,17 @@ A Kotlin facade for [SWAPI (The Star Wars API)](https://swapi.dev/).
 - [Logback 1.4](https://logback.qos.ch/)
 - [Spring Framemork 6.0](https://spring.io/projects/spring-framework)
 
-## Execution
+## Running the application
 
-TBD
+### Tests
+```sh
+docker compose --profile test up
+```
+
+### Application
+```sh
+docker compose --profile application up
+```
 
 ## Endpoints
 
