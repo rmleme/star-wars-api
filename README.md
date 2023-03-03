@@ -130,7 +130,7 @@ docker compose --profile application up
 - ***GET*** `/v1.0/planets/?name={name}` - find a planet by name.
   - query parameters:
     - required:
-      - name: **string**
+      - `name`: **string**
 
   <details>
     <summary><b>Request</b></summary><p>
@@ -179,7 +179,7 @@ docker compose --profile application up
 - ***GET*** `/v1.0/planets/{id}` - find a planet by id.
   - path parameters:
     - required:
-      - id: **int**
+      - `id`: **int**
 
   <details>
     <summary><b>Request</b></summary><p>
@@ -228,7 +228,7 @@ docker compose --profile application up
 - ***DELETE*** `/v1.0/planets/{id}` - delete a planet.
   - path parameters:
     - required:
-      - id: **int**
+      - `id`: **int**
 
   <details>
     <summary><b>Request</b></summary><p>
