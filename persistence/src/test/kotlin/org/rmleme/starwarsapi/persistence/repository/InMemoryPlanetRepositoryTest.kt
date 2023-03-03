@@ -4,6 +4,7 @@ import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import org.rmleme.starwarsapi.entities.CORUSCANT
+import org.rmleme.starwarsapi.entities.HOTH
 import org.rmleme.starwarsapi.entities.buildPlanets
 
 class InMemoryPlanetRepositoryTest : ShouldSpec({
@@ -11,6 +12,25 @@ class InMemoryPlanetRepositoryTest : ShouldSpec({
     isolationMode = IsolationMode.InstancePerTest
 
     val repository = InMemoryPlanetRepository()
+
+    beforeEach {
+        repository.save(9, CORUSCANT)
+        repository.save(4, HOTH)
+    }
+
+    afterTest {
+        repository.deleteById(9)
+        repository.deleteById(4)
+    }
+
+    should("save a planet") {
+        val planet = CORUSCANT
+
+        val result = repository.save(9, planet)
+
+        result shouldBe planet
+        repository.findById(9).get() shouldBe planet
+    }
 
     should("find all planets") {
         val planets = buildPlanets()

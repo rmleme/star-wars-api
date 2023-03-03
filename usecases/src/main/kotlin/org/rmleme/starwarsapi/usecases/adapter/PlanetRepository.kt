@@ -5,6 +5,8 @@ import java.util.Optional
 
 interface PlanetRepository {
 
+    suspend fun save(id: Int, planet: Planet): Planet
+
     suspend fun findAll(): List<Planet>
 
     suspend fun findById(id: Int): Optional<Planet>

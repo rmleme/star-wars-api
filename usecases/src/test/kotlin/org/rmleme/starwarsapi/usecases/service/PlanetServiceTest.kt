@@ -8,6 +8,7 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import org.rmleme.starwarsapi.entities.CORUSCANT
+import org.rmleme.starwarsapi.entities.Planet
 import org.rmleme.starwarsapi.entities.buildPlanets
 import org.rmleme.starwarsapi.usecases.adapter.PlanetRepository
 import org.rmleme.starwarsapi.usecases.adapter.SWApiClient
@@ -21,16 +22,32 @@ class PlanetServiceTest : ShouldSpec({
     val planetRepository = mockk<PlanetRepository>()
     val service = PlanetService(swapiClient, planetRepository)
 
-    should("delegate load a planet to swapi client") {
+    should("load a planet from swapi client and persist in repository") {
         val planet = CORUSCANT
 
         coEvery { swapiClient.loadPlanetFromApi(9) } returns Optional.of(planet)
+        coEvery { planetRepository.save(9, planet) } returns planet
 
         val result = service.loadPlanetFromApi(9)
 
         result.get() shouldBe planet
 
-        coVerify(exactly = 1) { swapiClient.loadPlanetFromApi(9) }
+        coVerify(exactly = 1) {
+            swapiClient.loadPlanetFromApi(9)
+            planetRepository.save(9, planet)
+        }
+    }
+
+    should("does not load a planet from swapi client and does not persist in repository") {
+        val expected = Optional.empty<Planet>()
+
+        coEvery { swapiClient.loadPlanetFromApi(999) } returns Optional.empty<Planet>()
+
+        val result = service.loadPlanetFromApi(999)
+
+        result shouldBe expected
+
+        coVerify(exactly = 1) { swapiClient.loadPlanetFromApi(999) }
         coVerify { planetRepository wasNot Called }
     }
 
