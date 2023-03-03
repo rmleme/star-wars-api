@@ -21,12 +21,12 @@ A Kotlin facade for [SWAPI (The Star Wars API)](https://swapi.dev/).
 
 ### Tests
 ```sh
-docker compose --profile test up
+docker compose -f compose-test.yml up
 ```
 
 ### Application
 ```sh
-docker compose --profile application up
+docker compose up
 ```
 
 ## Endpoints

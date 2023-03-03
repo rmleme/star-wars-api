@@ -1,8 +1,8 @@
 services:
   application:
-    profiles: ["application"]
     build:
       context: .
+      dockerfile: Dockerfile
     container_name: star-wars-api.application
     ports:
       - "8080:8080"
@@ -11,9 +11,3 @@ services:
       LOG_BASE_DIR: "/var/log"
     volumes:
       - "${HOST_BASE_LOG_DIR:-./log}/star-wars-api:/var/log/star-wars-api"
-  test:
-    profiles: ["test"]
-    build:
-      context: .
-      dockerfile: Dockerfile-test
-    container_name: star-wars-api.test
