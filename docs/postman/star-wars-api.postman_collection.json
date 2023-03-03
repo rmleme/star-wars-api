@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "c7f266a1-24df-4a94-8d05-61e5b090096c",
+		"name": "star-wars-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST /v1.0/planets",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 9\n}"
+				},
+				"url": {
+					"raw": "{{host}}/v1.0/planets",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1.0",
+						"planets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /v1.0/planets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/v1.0/planets",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1.0",
+						"planets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /v1.0/planets/?name={name}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/v1.0/planets/?name=Coruscant",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1.0",
+						"planets",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Coruscant"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /v1.0/planets/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/v1.0/planets/9",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1.0",
+						"planets",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /v1.0/planets/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/v1.0/planets/9",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1.0",
+						"planets",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
