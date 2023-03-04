@@ -10,6 +10,7 @@ A Kotlin facade for [SWAPI (The Star Wars API)](https://swapi.dev/).
 - [Fuel 2.3](https://fuel.gitbook.io/documentation/)
 - [Gradle 7.6](https://gradle.org/)
 - [Jackson 2.14](https://github.com/FasterXML/jackson)
+- [JaCoCo 0.8](https://www.eclemma.org/jacoco/)
 - [JDK 17](https://openjdk.org/projects/jdk/17/)
 - [Kotest 5.5](https://kotest.io/)
 - [Kotlin 1.8](https://kotlinlang.org/docs/whatsnew18.html)

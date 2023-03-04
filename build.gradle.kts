@@ -7,6 +7,7 @@ plugins {
     kotlin("jvm") version Dependency.Versions.kotlin
     id("io.gitlab.arturbosch.detekt") version Dependency.Versions.detekt
     id("org.jetbrains.kotlin.plugin.spring") version Dependency.Versions.kotlin
+    jacoco
 }
 
 allprojects {
@@ -22,9 +23,23 @@ subprojects {
     apply(plugin = "kotlin")
     apply(plugin = "kotlin-spring")
     apply(plugin = "io.gitlab.arturbosch.detekt")
+    apply(plugin = "jacoco")
 
     detekt {
         autoCorrect = true
+    }
+
+    jacoco {
+        toolVersion = Dependency.Versions.jacoco
+        reportsDirectory.set(file("$buildDir/reports/jacoco"))
+    }
+
+    tasks.jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            csv.required.set(false)
+            html.required.set(true)
+        }
     }
 
     dependencies {
@@ -43,6 +58,7 @@ subprojects {
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = "${JavaVersion.VERSION_17}"
+            allWarningsAsErrors = true
         }
     }
 
@@ -51,5 +67,32 @@ subprojects {
         testLogging {
             events = setOf(SKIPPED, PASSED, FAILED)
         }
+    }
+}
+
+tasks.register<JacocoReport>("codeCoverageReport") {
+    jacoco { toolVersion = Dependency.Versions.jacoco }
+    subprojects.forEach { subproject ->
+        subproject.plugins.withType<JacocoPlugin>().configureEach {
+            subproject.tasks
+                .matching { it.extensions.findByType<JacocoTaskExtension>() != null }
+                .configureEach {
+                    sourceSets(subproject.sourceSets.main.get())
+                    executionData(
+                        files(this).filter { it.isFile && it.exists() }
+                    )
+                }
+            subproject.tasks
+                .matching { it.extensions.findByType<JacocoTaskExtension>() != null }
+                .configureEach { rootProject.tasks["codeCoverageReport"].dependsOn(this) }
+            subproject.tasks
+                .withType<Test>()
+                .configureEach { rootProject.tasks["codeCoverageReport"].dependsOn(this) }
+        }
+    }
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+        html.required.set(true)
     }
 }

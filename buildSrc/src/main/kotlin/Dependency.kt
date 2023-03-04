@@ -26,6 +26,7 @@ object Dependency {
 
         // Code analysis
         const val detekt = "1.22.0"
+        const val jacoco = "0.8.8"
     }
 
     // Kotlin
