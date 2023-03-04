@@ -14,3 +14,16 @@ dependencies {
 
     testImplementation(Dependency.ktorTests)
 }
+
+configurations {
+    create("test")
+}
+
+tasks.register<Jar>("testArchive") {
+    archiveBaseName.set("http-api-test")
+    from(project.the<SourceSetContainer>()["test"].output)
+}
+
+artifacts {
+    add("test", tasks["testArchive"])
+}
