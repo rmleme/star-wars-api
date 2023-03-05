@@ -8,4 +8,6 @@ dependencies {
     implementation(Dependency.kotlinCoroutinesCore)
 
     testImplementation(project(":entities", "test"))
+
+    testImplementation(Dependency.kotestWireMock)
 }
