@@ -31,6 +31,8 @@ docker compose -f compose-test.yml up
 docker compose up
 ```
 
+- **Note:** the first execution will be slow, as Docker (and Gradle) will need to download all the necessary dependencies to build the images. 
+
 ## Endpoints
 
 - **URL:** `http://localhost:8080`
