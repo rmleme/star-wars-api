@@ -39,7 +39,7 @@ class SWApiClientImpl(
         }.awaitAll()
 
         logger.info("Planet $id (${planetResponse.name}) retrieved from swapi")
-        Optional.of(planetResponse.toPlanet(filmsResponse))
+        Optional.of(planetResponse.toPlanet(id, filmsResponse))
     }
 
     private companion object {

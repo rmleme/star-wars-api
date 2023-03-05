@@ -11,3 +11,7 @@ services:
       LOG_BASE_DIR: "/var/log"
     volumes:
       - "${HOST_APP_DATA_DIR:-./app-data}/star-wars-api/log:/var/log/star-wars-api"
+  mongo:
+    extends:
+      file: compose-mongo.yml
+      service: mongo

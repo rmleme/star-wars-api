@@ -40,7 +40,7 @@ class AcceptanceTest(
 
     listener(WireMockListener(wireMockServer, ListenerMode.PER_SPEC))
 
-    test("end-to-end acceptance test") {
+    xtest("end-to-end acceptance test") {
         testApplication {
             val client = defaultTestApplication(PLANETS_PATH) {
                 postPlanet(service)

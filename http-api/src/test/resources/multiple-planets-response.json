@@ -1,5 +1,6 @@
 [
     {
+        "id": 9,
         "name": "Coruscant",
         "climate": "temperate",
         "terrain": "cityscape, mountains",
@@ -27,6 +28,7 @@
         ]
     },
     {
+        "id": 4,
         "name": "Hoth",
         "climate": "frozen",
         "terrain": "tundra, ice caves, mountain ranges",

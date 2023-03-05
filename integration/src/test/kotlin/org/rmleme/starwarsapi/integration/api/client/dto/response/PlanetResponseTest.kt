@@ -13,8 +13,9 @@ class PlanetResponseTest : ShouldSpec({
             films = emptyList()
         )
 
-        val planet = planetResponse.toPlanet(emptyList())
+        val planet = planetResponse.toPlanet(9, emptyList())
 
+        planet.id shouldBe 9
         planet.name shouldBe planetResponse.name
         planet.climate shouldBe planetResponse.climate
         planet.terrain shouldBe planetResponse.terrain

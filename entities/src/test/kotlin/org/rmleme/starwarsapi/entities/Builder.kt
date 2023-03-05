@@ -3,6 +3,7 @@ package org.rmleme.starwarsapi.entities
 fun buildPlanets() = listOf(CORUSCANT, HOTH)
 
 val CORUSCANT = Planet(
+    id = 9,
     name = "Coruscant",
     climate = "temperate",
     terrain = "cityscape, mountains",
@@ -15,6 +16,7 @@ val CORUSCANT = Planet(
 )
 
 val HOTH = Planet(
+    id = 4,
     name = "Hoth",
     climate = "frozen",
     terrain = "tundra, ice caves, mountain ranges",

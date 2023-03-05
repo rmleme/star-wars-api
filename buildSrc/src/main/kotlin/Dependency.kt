@@ -15,6 +15,10 @@ object Dependency {
         // Spring
         const val springCommon = "6.0.4"
 
+        // Persistence
+        const val mongoDriver = "4.9.0"
+        const val springMongo = "4.0.3"
+
         // Web
         const val fuel = "2.3.1"
         const val ktor = "2.2.3"
@@ -41,6 +45,10 @@ object Dependency {
 
     // Spring
     const val springContext = "org.springframework:spring-context:${Versions.springCommon}"
+
+    // Persistence
+    const val mongoDriver = "org.mongodb:mongodb-driver-sync:${Versions.mongoDriver}"
+    const val springMongo = "org.springframework.data:spring-data-mongodb:${Versions.springMongo}"
 
     // Web
     const val fuel = "com.github.kittinunf.fuel:fuel:${Versions.fuel}"

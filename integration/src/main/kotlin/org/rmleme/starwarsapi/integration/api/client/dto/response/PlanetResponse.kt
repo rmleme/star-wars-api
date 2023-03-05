@@ -8,7 +8,8 @@ data class PlanetResponse(
     val terrain: String,
     val films: List<String>
 ) {
-    fun toPlanet(films: List<FilmResponse>) = Planet(
+    fun toPlanet(id: Int, films: List<FilmResponse>) = Planet(
+        id = id,
         name = name,
         climate = climate,
         terrain = terrain,
