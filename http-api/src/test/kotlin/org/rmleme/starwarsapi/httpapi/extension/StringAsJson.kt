@@ -5,4 +5,4 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 
 val mapper = jacksonObjectMapper()
 
-internal fun String.asJson(): JsonNode = mapper.readTree(this)
+fun String.asJson(): JsonNode = mapper.readTree(this)

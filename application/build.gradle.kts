@@ -24,6 +24,7 @@ dependencies{
     testImplementation(project(":entities", "test"))
     testImplementation(project(":http-api", "test"))
 
+    testImplementation(Dependency.ktorJackson)
     testImplementation(Dependency.ktorTests)
     testImplementation(Dependency.kotestWireMock)
 }
