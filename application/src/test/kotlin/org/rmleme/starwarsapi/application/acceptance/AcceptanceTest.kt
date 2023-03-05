@@ -62,8 +62,8 @@ class AcceptanceTest(
             }.apply {
                 status shouldBe HttpStatusCode.Created
                 bodyAsText().asJson() shouldBe expectedSingle.asJson()
-                service.findAll() shouldBe listOf(CORUSCANT)
             }
+            service.findAll() shouldBe listOf(CORUSCANT)
 
             client.get(PLANETS_PATH).apply {
                 status shouldBe HttpStatusCode.OK
