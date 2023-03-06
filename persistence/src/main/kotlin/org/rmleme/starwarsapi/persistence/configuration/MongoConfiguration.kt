@@ -23,4 +23,6 @@ class MongoConfiguration : AbstractMongoClientConfiguration() {
     override fun mongoClient() = MongoClients.create(uri)
 
     override fun getDatabaseName() = database
+
+    override fun autoIndexCreation() = true
 }
