@@ -18,3 +18,6 @@ services:
     extends:
       file: compose-mongo.yml
       service: mongo
+
+volumes:
+  mongodata:
