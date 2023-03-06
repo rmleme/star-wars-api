@@ -23,7 +23,7 @@ A Kotlin facade for [SWAPI (The Star Wars API)](https://swapi.dev/).
   - [Docker Compose 2.16](https://docs.docker.com/compose/)
   - [Docker Engine 23.0](https://docs.docker.com/engine/)
 
-**Important:** <u>the external technologies are prerequisites and must be previously installed at your host to run the application</u>.
+**Important:** <ins>the external technologies are prerequisites and must be previously installed at your host to run the application</ins>.
 
 ## Running the application
 
