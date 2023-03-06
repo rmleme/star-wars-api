@@ -57,7 +57,7 @@ docker compose up
   </details><br/>
 
   <details>
-    <summary><b>Response Body</b></summary><p>
+    <summary><b>Response Body (HTTP 201)</b></summary><p>
 
   ```json
   {
@@ -91,6 +91,10 @@ docker compose up
   </p>
   </details><br/>
 
+    <details>
+      <summary><b>Other responses: HTTP 400, HTTP 422</b></summary><p>
+    </details><br/>
+
 - ***GET*** `/v1.0/planets` - list all planets saved in the application.
     <details>
       <summary><b>Request</b></summary><p>
@@ -102,7 +106,7 @@ docker compose up
     </details><br/>
 
     <details>
-      <summary><b>Response Body</b></summary><p>
+      <summary><b>Response Body (HTTP 200)</b></summary><p>
 
   ```json
     [
@@ -139,6 +143,10 @@ docker compose up
   </p>
   </details><br/>
 
+    <details>
+      <summary><b>Other responses:</b></summary><p>
+    </details><br/>
+
 - ***GET*** `/v1.0/planets/?name={name}` - find a planet by name.
   - query parameters:
     - required:
@@ -154,7 +162,7 @@ docker compose up
   </details><br/>
 
   <details>
-    <summary><b>Response Body</b></summary><p>
+    <summary><b>Response Body (HTTP 200)</b></summary><p>
 
   ```json
   {
@@ -188,6 +196,10 @@ docker compose up
     ```
   </p>
   </details><br/>
+
+    <details>
+      <summary><b>Other responses: HTTP 404</b></summary><p>
+    </details><br/>
 
 - ***GET*** `/v1.0/planets/{id}` - find a planet by id.
   - path parameters:
@@ -204,7 +216,7 @@ docker compose up
   </details><br/>
 
   <details>
-    <summary><b>Response Body</b></summary><p>
+    <summary><b>Response Body (HTTP 200)</b></summary><p>
 
   ```json
   {
@@ -239,6 +251,10 @@ docker compose up
   </p>
   </details><br/>
 
+    <details>
+      <summary><b>Other responses: HTTP 400, HTTP 404</b></summary><p>
+    </details><br/>
+
 - ***DELETE*** `/v1.0/planets/{id}` - delete a planet.
   - path parameters:
     - required:
@@ -254,12 +270,28 @@ docker compose up
   </details><br/>
 
   <details>
-    <summary><b>Response Body</b></summary><p>
+    <summary><b>Response Body (HTTP 204)</b></summary><p>
 
   ```json
-    ```
+  ```
   </p>
   </details><br/>
 
+    <details>
+      <summary><b>Other responses: HTTP 400, HTTP 404</b></summary><p>
+    </details><br/>
+
 - ### Postman
   - A [Postman](https://www.postman.com/) [collection](./docs/postman/star-wars-api.postman_collection.json) (and the respective [environment](./docs/postman/Star-Wars-API-Development-Env.postman_environment.json)) is available at [/docs/postman/](./docs/postman/) for all endpoints. Import both files to your local Postman installation and start making requests.
+
+## Further discussions
+
+### Disclaimers:
+
+- MongoDB credentials were stored as plain text at configuration files. Naturally, in a Production system, such credentials would not be disclosed (typically they would be configured in a Secrets Manager).
+- Through a Docker volume (in [compose-mongo.yml](./compose-mongo.yml)), the state of MongoDB is maintained between executions.
+
+### Possible improvements:
+
+- Implement a retry logic for Fuel calls to swapi at [HttpClient](./integration/src/main/kotlin/org/rmleme/starwarsapi/integration/http/HttpClient.kt).
+- Document the endpoints with [OpenAPI](https://www.openapis.org/).
