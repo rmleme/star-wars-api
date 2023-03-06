@@ -37,7 +37,8 @@ docker compose -f compose-test.yml up
 docker compose up
 ```
 
-- **Note:** the first execution will be slow, as Docker (and Gradle) will need to download all the necessary dependencies to build the images. 
+- **Important:** the first execution will be slow, as Docker (and Gradle) will need to download all the necessary dependencies to build the images.
+- The command above will trigger the execution of two containers: MongoDB and the application.
 
 ## Endpoints
 
