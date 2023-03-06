@@ -25,13 +25,5 @@ class PlanetRepositoryImpl(private val dao: PlanetDAO) : PlanetRepository {
         dao.findByName(name).map { it.toEntity() }
     }
 
-    override suspend fun deleteById(id: Int): Optional<Planet> {
-        val planetDocument = dao.findById(id)
-        return if (planetDocument.isPresent) {
-            dao.delete(planetDocument.get())
-            Optional.of(planetDocument.get().toEntity())
-        } else {
-            Optional.empty()
-        }
-    }
+    override suspend fun deleteById(id: Int) = dao.deleteById(id)
 }

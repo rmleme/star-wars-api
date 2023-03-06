@@ -4,8 +4,10 @@ import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.Called
+import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.just
 import io.mockk.mockk
 import org.rmleme.starwarsapi.entities.CORUSCANT
 import org.rmleme.starwarsapi.entities.Planet
@@ -90,16 +92,36 @@ class PlanetServiceTest : ShouldSpec({
         coVerify(exactly = 1) { planetRepository.findByName("Coruscant") }
     }
 
-    should("delegate delete a planet to repository") {
+    should("delete an existent planet from repository") {
         val planet = CORUSCANT
 
-        coEvery { planetRepository.deleteById(9) } returns Optional.of(planet)
+        coEvery { planetRepository.findById(9) } returns Optional.of(planet)
+        coEvery { planetRepository.deleteById(9) } just Runs
 
         val result = service.deleteById(9)
 
         result.get() shouldBe planet
 
         coVerify { swapiClient wasNot Called }
-        coVerify(exactly = 1) { planetRepository.deleteById(9) }
+        coVerify(exactly = 1) {
+            planetRepository.findById(9)
+            planetRepository.deleteById(9)
+        }
+    }
+
+    should("return an empty Optional when delete a non-existent planet") {
+        coEvery { planetRepository.findById(9) } returns Optional.empty()
+
+        val result = service.deleteById(9)
+
+        result.isEmpty shouldBe true
+
+        coVerify { swapiClient wasNot Called }
+        coVerify(exactly = 1) {
+            planetRepository.findById(9)
+        }
+        coVerify(exactly = 0) {
+            planetRepository.deleteById(9)
+        }
     }
 })

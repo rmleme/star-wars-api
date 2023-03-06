@@ -95,32 +95,13 @@ class PlanetRepositoryImplTest : ShouldSpec({
         verify(exactly = 1) { planetDAO.findByName("") }
     }
 
-    should("delete an existent planet") {
-        val planet = CORUSCANT
-        val planetDocument = planet.toDocument(9)
+    should("delete a planet") {
+        every { planetDAO.deleteById(9) } just Runs
 
-        every { planetDAO.findById(9) } returns Optional.of(planetDocument)
-        every { planetDAO.delete(planetDocument) } just Runs
-
-        val result = repository.deleteById(9)
-
-        result.isPresent shouldBe true
-        result.get() shouldBe planet
+        repository.deleteById(9)
 
         verify(exactly = 1) {
-            planetDAO.findById(9)
-            planetDAO.delete(planetDocument)
+            planetDAO.deleteById(9)
         }
-    }
-
-    should("return an empty Optional when delete a non-existent planet") {
-        every { planetDAO.findById(-1) } returns Optional.empty()
-
-        val result = repository.deleteById(-1)
-
-        result.isEmpty shouldBe true
-
-        verify(exactly = 1) { planetDAO.findById(-1) }
-        verify(exactly = 0) { planetDAO.delete(any()) }
     }
 })

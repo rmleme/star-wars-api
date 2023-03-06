@@ -28,12 +28,14 @@ class PlanetService(
 
     suspend fun findByName(name: String) = repository.findByName(name)
 
-    suspend fun deleteById(id: Int) = repository.deleteById(id)
-        .also {
-            if (it.isPresent) {
-                logger.info("Deleted planet $id (${it.get().name}) from repository")
-            }
+    suspend fun deleteById(id: Int): Optional<Planet> {
+        val planet = findById(id)
+        if (planet.isPresent) {
+            repository.deleteById(id)
+            logger.info("Deleted planet $id (${planet.get().name}) from repository")
         }
+        return planet
+    }
 
     private companion object {
         val logger = LoggerFactory.getLogger(PlanetService::class.java)!!
