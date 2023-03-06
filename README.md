@@ -23,7 +23,7 @@ A Kotlin facade for [SWAPI (The Star Wars API)](https://swapi.dev/).
   - [Docker Compose 2.16](https://docs.docker.com/compose/)
   - [Docker Engine 23.0](https://docs.docker.com/engine/)
 
-**Note:** <u>the external technologies are prerequisites and must be previously installed at your host to run the application</u>.
+**Important:** <u>the external technologies are prerequisites and must be previously installed at your host to run the application</u>.
 
 ## Running the application
 
@@ -38,7 +38,7 @@ docker compose up
 ```
 
 - **Important:** the first execution will be slow, as Docker (and Gradle) will need to download all the necessary dependencies to build the images.
-- The command above will trigger the execution of two containers: MongoDB and the application.
+- The command above will trigger the execution of two containers: MongoDB and the application itself.
 - Application logs will be available at directory `./app-data/star-wars-api/log` of the host. If you prefer another base directory instead of `/app-data`, set the environment variable `HOST_APP_DATA_DIR`.
 
 ## Endpoints
