@@ -295,3 +295,4 @@ docker compose up
 
 - Implement a retry logic for Fuel calls to swapi at [HttpClient](./integration/src/main/kotlin/org/rmleme/starwarsapi/integration/http/HttpClient.kt).
 - Document the endpoints with [OpenAPI](https://www.openapis.org/).
+- Fine-tune the exclusion rules of JaCoCo plugin in order to discard meaningless classes from code coverage report (*e.g.* configuration classes, DTOs, etc).
