@@ -26,8 +26,10 @@ object Dependency {
         // Tests
         const val kotest = "5.5.4"
         const val kotestSpring = "1.1.2"
+        const val kotestTestcontainers = "1.3.4"
         const val kotestWireMock = "1.0.3"
         const val mockk = "1.13.4"
+        const val testcontainers = "1.17.6"
 
         // Code analysis
         const val detekt = "1.22.0"
@@ -65,9 +67,11 @@ object Dependency {
     const val kotestCore = "io.kotest:kotest-assertions-core-jvm:${Versions.kotest}"
     const val kotestRunner = "io.kotest:kotest-runner-junit5-jvm:${Versions.kotest}"
     const val kotestSpring = "io.kotest.extensions:kotest-extensions-spring:${Versions.kotestSpring}"
+    const val kotestTestcontainers = "io.kotest.extensions:kotest-extensions-testcontainers:${Versions.kotestTestcontainers}"
     const val kotestWireMock = "io.kotest.extensions:kotest-extensions-wiremock:${Versions.kotestWireMock}"
     const val ktorTests = "io.ktor:ktor-server-tests-jvm:${Versions.ktor}"
     const val mockk = "io.mockk:mockk:${Versions.mockk}"
+    const val mongoTestcontainers = "org.testcontainers:mongodb:${Versions.testcontainers}"
     const val springTest = "org.springframework:spring-test:${Versions.springCommon}"
 
     // Code analysis

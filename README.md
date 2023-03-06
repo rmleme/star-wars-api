@@ -18,6 +18,7 @@ A Kotlin facade for [SWAPI (The Star Wars API)](https://swapi.dev/).
 - [Logback 1.4](https://logback.qos.ch/)
 - [MongoDB 6.0](https://www.mongodb.com/)
 - [Spring Framemork 6.0](https://spring.io/projects/spring-framework)
+- [Testcontainers 1.17](https://www.testcontainers.org/)
 - [WireMock 2.31](https://wiremock.org/)
 
 ## Running the application

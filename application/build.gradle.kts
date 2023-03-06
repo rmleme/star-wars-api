@@ -26,5 +26,8 @@ dependencies{
 
     testImplementation(Dependency.ktorJackson)
     testImplementation(Dependency.ktorTests)
+    testImplementation(Dependency.kotestTestcontainers)
     testImplementation(Dependency.kotestWireMock)
+    testImplementation(Dependency.mongoDriver)
+    testImplementation(Dependency.mongoTestcontainers)
 }
