@@ -294,5 +294,6 @@ docker compose up
 ### Possible improvements:
 
 - Implement a retry logic for Fuel calls to swapi at [HttpClient](./integration/src/main/kotlin/org/rmleme/starwarsapi/integration/http/HttpClient.kt).
-- Document the endpoints with [OpenAPI](https://www.openapis.org/).
+- Document the endpoints with [OpenAPI](https://www.openapis.org/) (in addition to README + Postman).
 - Fine-tune the exclusion rules of JaCoCo plugin in order to discard meaningless classes from code coverage report (*e.g.* configuration classes, DTOs, etc).
+- Use the reactive version of MongoRepository (instead of triggering new coroutine contexts at [PlanetRepositoryImpl](./persistence/src/main/kotlin/org/rmleme/starwarsapi/persistence/repository/PlanetRepositoryImpl.kt)). 
