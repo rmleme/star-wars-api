@@ -71,7 +71,10 @@ subprojects {
 }
 
 tasks.register<JacocoReport>("codeCoverageReport") {
-    jacoco { toolVersion = Dependency.Versions.jacoco }
+    jacoco {
+        toolVersion = Dependency.Versions.jacoco
+        reportsDirectory.set(file("$projectDir/reports/jacoco"))
+    }
     subprojects.forEach { subproject ->
         subproject.plugins.withType<JacocoPlugin>().configureEach {
             subproject.tasks

@@ -7,3 +7,4 @@ services:
     volumes:
       - $PWD:$PWD
       - /var/run/docker.sock:/var/run/docker.sock
+      - "${HOST_APP_DATA_DIR:-./app-data}/star-wars-api/reports:/home/gradle/project/reports"
