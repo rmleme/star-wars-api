@@ -8,10 +8,9 @@ services:
       - "8080:8080"
     environment:
       JAVA_OPTS: "-Xms256m -Xmx256m"
-      LOG_BASE_DIR: "/var/log"
       SPRING_DATA_MONGODB_URI: "mongodb://admin:password@mongo:27017"
     volumes:
-      - "${HOST_APP_DATA_DIR:-./app-data}/star-wars-api/log:/var/log/star-wars-api"
+      - "${HOST_APP_DATA_DIR:-./app-data}/star-wars-api/log:/tmp/star-wars-api"
     depends_on:
       - mongo
   mongo:

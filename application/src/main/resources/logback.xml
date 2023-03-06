@@ -1,6 +1,6 @@
 <configuration>
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>${LOG_BASE_DIR:-/var/log}/star-wars-api/app.log</file>
+        <file>/tmp/star-wars-api/app.log</file>
         <append>true</append>
         <encoder>
             <pattern>
