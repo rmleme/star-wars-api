@@ -253,4 +253,4 @@ docker compose up
   </details></br>
 
 - ### Postman
-  - A [Postman](https://www.postman.com/) [collection](./docs/postman/star-wars-api.postman_collection.json) (and the respective [environment](./docs/postman/Star-Wars-API-Development-Env.postman_environment.json)) is available for all endpoints. Import both files to your local Postman installation and start making requests.
+  - A [Postman](https://www.postman.com/) [collection](./docs/postman/star-wars-api.postman_collection.json) (and the respective [environment](./docs/postman/Star-Wars-API-Development-Env.postman_environment.json)) is available at [/docs/postman/](./docs/postman/) for all endpoints. Import both files to your local Postman installation and start making requests.
